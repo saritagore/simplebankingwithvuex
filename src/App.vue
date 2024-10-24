@@ -1,15 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <the-header></the-header>
+      <div class="main-wraper">
+  <div v-if="!showDashborad">
+    <the-customer-data></the-customer-data>
+  </div>
+  <div v-else>
+    <the-banking-dashvoard></the-banking-dashvoard>
+  </div>
+ </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TheBankingDashvoard from './components/TheBankingDashvoard.vue';
+import TheCustomerData from './components/TheCustomerData.vue';
+import TheHeader from './components/TheHeader.vue';
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components:{
+    TheHeader,
+    TheCustomerData,
+    TheBankingDashvoard
+  },
+  computed:{
+    showDashborad(){
+      return this.$store.getters['cust/setShowDashboardFlag'];
+    }
   }
 }
 </script>
@@ -19,8 +34,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  padding: 0;
+  margin: 0;
+  color:#333;
+}
+.main-wraper{
+  border-top: 2px solid #0077b5;
 }
 </style>
